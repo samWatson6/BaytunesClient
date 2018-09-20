@@ -1,0 +1,14 @@
+.Landing {
+  display: grid;
+  grid-template-rows: auto;
+  grid-template-columns: auto;
+  height: 800px;
+}
+
+.Landing {
+  justify-self: center;
+}
+
+.landing-body {
+  height: 800px;
+}
