@@ -8,24 +8,66 @@ class Equalizer extends React.Component {
     this.state = {
       heights: Heights
     };
+    this.createEqualizeFrame = this.createEqualizeFrame.bind(this);
   }
 
   componentDidMount() {
-    this.createBlocksFromHeight(5, "1");
-    for (var i = 1; i < this.state.heights[0].length; i++) {
+    this.runEqualizer();
+  }
+
+  runEqualizer = () => {
+    let frameNumber = 0;
+    setInterval(() => {
+      frameNumber++;
+      if (frameNumber > 20) {
+        frameNumber = 0;
+      }
+      this.createEqualizeFrame(frameNumber);
+    }, 250);
+  };
+
+  createEqualizeFrame(frameNumber) {
+    for (var i = 1; i < this.state.heights[frameNumber].length; i++) {
       let column = i.toString();
-      console.log(column);
-      this.createBlocksFromHeight(this.state.heights[0][i], column);
+      this.createBlocksFromHeight(this.state.heights[frameNumber][i], column);
     }
   }
 
   createBlocksFromHeight(height, column) {
+    let totalHeight = height;
     let id = "c" + column;
     let blocksStorage = [];
+    let heightColors = {
+      0: "green",
+      1: "green",
+      2: "green",
+      3: "green",
+      4: "yellow",
+      5: "yellow",
+      6: "yellow",
+      7: "yellow",
+      8: "orange",
+      9: "orange",
+      10: "orange",
+      11: "orange",
+      12: "orange",
+      13: "red",
+      14: "red",
+      15: "red",
+      16: "red"
+    };
     while (height > 0) {
-      height--;
-      const block = <div className="block">X</div>;
+      let blockStyle = {
+        background: heightColors[totalHeight - height],
+        color: heightColors[totalHeight - height]
+      };
+      const block = (
+        <div className="block" style={blockStyle}>
+          X
+        </div>
+      );
       blocksStorage.push(block);
+      height--;
     }
     let blocks = <div> {blocksStorage} </div>;
     ReactDOM.render(blocks, document.getElementById(id));
@@ -36,8 +78,6 @@ class Equalizer extends React.Component {
   render() {
     return (
       <div className="equalizer">
-        {" "}
-        Equalizer
         <div className="equalizer-container">
           <div className="column" id="c1" />
           <div className="column" id="c2" />

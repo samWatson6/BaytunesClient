@@ -2,6 +2,7 @@ import React from "react";
 import Header from "./Header";
 import "./Landing.css";
 import Equalizer from "./Equalizer";
+
 const Landing = () => {
   return (
     <div className="landing">

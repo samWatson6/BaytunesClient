@@ -7,32 +7,26 @@
 
 .App-logo {
   animation: App-logo-spin infinite 20s linear;
-  height: 40px;
+  height: 50px;
+  width: 80px;
   float: left;
 }
 
 .App-header {
-  background-color: #222;
-  height: 40px;
+  background-color: black;
+  height: 50px;
   color: white;
   display: flex;
 }
 
 .App-title {
-  font-size: 1.5em;
+  font-size: 24pt;
+  margin-left: -3px;
+  color: black;
 }
 
 .App-intro {
   font-size: large;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
 }
 
 .App-header {
@@ -41,11 +35,6 @@
 
 .App-title {
   order: 1;
-  align-self: center;
-}
-
-App-logo {
-  order: 0;
   align-self: center;
 }
 
@@ -63,4 +52,17 @@ App-logo {
   display: grid;
   grid-template-rows: repeat(20, 15px);
   grid-template-columns: repeat(21, 15px);
+  grid-column-gap: 2px;
+  grid-row-gap: 2px;
+}
+
+.column {
+  display: grid;
+}
+
+.block {
+  align-self: end;
+  height: 5px;
+  font-size: 2px;
+  margin-top: 2px;
 }
