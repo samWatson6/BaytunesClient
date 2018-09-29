@@ -18,7 +18,7 @@ class App extends Component {
               path="/concerts/user"
               component={SpotifyReccommendation}
             />
-            <Route exact path="/concerts/all" component={Landing} />
+            <Route exact path="/concerts" component={Landing} />
           </Switch>
         </BrowserRouter>
       </div>
