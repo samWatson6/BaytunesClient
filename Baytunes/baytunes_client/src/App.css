@@ -3,6 +3,8 @@
   background: url("./Fog_City.jpg");
   background-size: cover;
   opacity: 0.8;
+  height: 100%;
+  width: 100%;
 }
 
 .App-logo {
@@ -30,7 +32,7 @@
 }
 
 .App-header {
-  opacity: 0.8;
+  opacity: 0.9;
 }
 
 .App-title {
