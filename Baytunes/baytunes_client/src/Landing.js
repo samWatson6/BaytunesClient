@@ -8,7 +8,7 @@ const Landing = () => {
       <h1 className="landing-header"> Find Live Music in San Francisco </h1>
       <div className="landing-body">
         <form>
-          <button formAction="/user">Get Music</button>
+          <button formAction="/concerts">Get Music</button>
         </form>
         <Equalizer />
       </div>
