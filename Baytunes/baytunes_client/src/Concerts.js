@@ -1,5 +1,6 @@
 import React from "react";
 import ConcertsList from "./ConcertsList.js";
+import Calendar from "./Calendar.js";
 
 class Concerts extends React.Component {
   constructor(props) {
@@ -25,6 +26,9 @@ class Concerts extends React.Component {
       <div>
         <h1>San Francisco Concerts </h1>
         <ConcertsList concerts={this.state.concerts} />
+        <div className="calendar-wrapper">
+          <Calendar />
+        </div>
       </div>
     );
   }

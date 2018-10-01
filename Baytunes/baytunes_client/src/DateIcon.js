@@ -18,12 +18,12 @@ class DateIcon extends React.Component {
         "DEC"
       ];
       let monthNumString = date.split("-")[1];
-      let monthIndex = parseInt(monthNumString);
+      let monthIndex = parseInt(monthNumString, 10);
       let month = months[monthIndex - 1];
       return month;
     };
     let formatDay = date => {
-      let day = parseInt(date.split("-")[2].split("T")[0]);
+      let day = parseInt(date.split("-")[2].split("T")[0], 10);
       return day;
     };
     return (

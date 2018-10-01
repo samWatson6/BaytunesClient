@@ -4,7 +4,7 @@ import DateIcon from "./DateIcon.js";
 const ListItem = props => {
   const formatTime = date => {
     let time = date.split("T")[1].slice(0, -3);
-    let hour = parseInt(time.split(":")[0]); //eslint ignore
+    let hour = parseInt(time.split(":")[0], 10); //eslint ignore
     let minute = time.split(":")[1];
     if (hour > 12) {
       hour = ((hour + 11) % 12) + 1;
