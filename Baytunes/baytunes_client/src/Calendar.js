@@ -1,15 +1,7 @@
 import React, { Component } from "react";
-import moment from "moment";
-import { forbidExtraProps } from "airbnb-prop-types";
 import omit from "lodash/omit";
-import PropTypes from "prop-types";
-import momentPropTypes from "react-moment-proptypes";
 import "react-dates/initialize";
-import {
-  DateRangePicker,
-  SingleDatePicker,
-  DayPickerRangeController
-} from "react-dates";
+import { DayPickerRangeController } from "react-dates";
 
 class Calendar extends Component {
   constructor(props) {
@@ -26,9 +18,14 @@ class Calendar extends Component {
 
   onDatesChange({ startDate, endDate }) {
     this.setState({ startDate, endDate });
-    // if (this.state.endDate && this.state.startDate) {
-    //   this.props.getdates(this.state.startDate.format(), this.state.endDate.format());
-    // }
+    setTimeout(() => {
+      if (this.state.endDate && this.state.startDate) {
+        this.props.changeDate(
+          this.state.startDate.format(),
+          this.state.endDate.format()
+        );
+      }
+    }, 500);
   }
 
   onFocusChange(focusedInput) {
@@ -39,12 +36,6 @@ class Calendar extends Component {
   }
 
   render() {
-    if (this.state.endDate && this.state.startDate) {
-      this.props.getdates(
-        this.state.startDate.format(),
-        this.state.endDate.format()
-      );
-    }
     const { showInputs } = this.props;
     const { focusedInput, startDate, endDate } = this.state;
     const props = omit(this.props, [
@@ -92,80 +83,80 @@ class Calendar extends Component {
 
 //React calendar settings
 //---------------------------------------------------
-Calendar.propTypes = propTypes;
-Calendar.defaultProps = defaultProps;
+// Calendar.propTypes = propTypes;
+// Calendar.defaultProps = defaultProps;
 
-const ScrollableOrientationShape = PropTypes.oneOf([
-  "horizontal",
-  "vertical",
-  "verticalScrollable"
-]);
+// const ScrollableOrientationShape = PropTypes.oneOf([
+//   "horizontal",
+//   "vertical",
+//   "verticalScrollable"
+// ]);
 
-const defaultProps = {
-  // example props for the demo
-  autoFocus: false,
-  initialDate: null,
-  showInput: false,
+// const defaultProps = {
+//   // example props for the demo
+//   autoFocus: false,
+//   initialDate: null,
+//   showInput: false,
 
-  // day presentation and interaction related props
-  renderCalendarDay: undefined,
-  renderDayContents: null,
-  isDayBlocked: () => false,
-  isDayHighlighted: () => false,
-  enableOutsideDays: false,
+//   // day presentation and interaction related props
+//   renderCalendarDay: undefined,
+//   renderDayContents: null,
+//   isDayBlocked: () => false,
+//   isDayHighlighted: () => false,
+//   enableOutsideDays: false,
 
-  // calendar presentation and interaction related props
-  orientation: "horizontal",
-  withPortal: false,
-  initialVisibleMonth: null,
-  numberOfMonths: 2,
-  onOutsideClick() {},
-  keepOpenOnDateSelect: false,
-  renderCalendarInfo: null,
-  isRTL: false,
+//   // calendar presentation and interaction related props
+//   orientation: "horizontal",
+//   withPortal: false,
+//   initialVisibleMonth: null,
+//   numberOfMonths: 2,
+//   onOutsideClick() {},
+//   keepOpenOnDateSelect: false,
+//   renderCalendarInfo: null,
+//   isRTL: false,
 
-  // navigation related props
-  navPrev: null,
-  navNext: null,
-  onPrevMonthClick() {},
-  onNextMonthClick() {},
+//   // navigation related props
+//   navPrev: null,
+//   navNext: null,
+//   onPrevMonthClick() {},
+//   onNextMonthClick() {},
 
-  // internationalization
-  monthFormat: "MMMM YYYY"
-};
+//   // internationalization
+//   monthFormat: "MMMM YYYY"
+// };
 
-const propTypes = forbidExtraProps({
-  // example props for the demo
-  autoFocus: PropTypes.bool,
-  initialDate: momentPropTypes.momentObj,
-  showInput: PropTypes.bool,
+// const propTypes = forbidExtraProps({
+//   // example props for the demo
+//   autoFocus: PropTypes.bool,
+//   initialDate: momentPropTypes.momentObj,
+//   showInput: PropTypes.bool,
 
-  keepOpenOnDateSelect: PropTypes.bool,
-  isOutsideRange: PropTypes.func,
-  isDayBlocked: PropTypes.func,
-  isDayHighlighted: PropTypes.func,
+//   keepOpenOnDateSelect: PropTypes.bool,
+//   isOutsideRange: PropTypes.func,
+//   isDayBlocked: PropTypes.func,
+//   isDayHighlighted: PropTypes.func,
 
-  // DayPicker props
-  enableOutsideDays: PropTypes.bool,
-  numberOfMonths: PropTypes.number,
-  orientation: ScrollableOrientationShape,
-  withPortal: PropTypes.bool,
-  initialVisibleMonth: PropTypes.func,
-  renderCalendarInfo: PropTypes.func,
+//   // DayPicker props
+//   enableOutsideDays: PropTypes.bool,
+//   numberOfMonths: PropTypes.number,
+//   orientation: ScrollableOrientationShape,
+//   withPortal: PropTypes.bool,
+//   initialVisibleMonth: PropTypes.func,
+//   renderCalendarInfo: PropTypes.func,
 
-  navPrev: PropTypes.node,
-  navNext: PropTypes.node,
+//   navPrev: PropTypes.node,
+//   navNext: PropTypes.node,
 
-  onPrevMonthClick: PropTypes.func,
-  onNextMonthClick: PropTypes.func,
-  onOutsideClick: PropTypes.func,
-  renderCalendarDay: PropTypes.func,
-  renderDayContents: PropTypes.func,
+//   onPrevMonthClick: PropTypes.func,
+//   onNextMonthClick: PropTypes.func,
+//   onOutsideClick: PropTypes.func,
+//   renderCalendarDay: PropTypes.func,
+//   renderDayContents: PropTypes.func,
 
-  // i18n
-  monthFormat: PropTypes.string,
+//   // i18n
+//   monthFormat: PropTypes.string,
 
-  isRTL: PropTypes.bool
-});
+//   isRTL: PropTypes.bool
+// });
 
 export default Calendar;

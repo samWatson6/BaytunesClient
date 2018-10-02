@@ -8,6 +8,7 @@ class Concerts extends React.Component {
     this.state = {
       concerts: []
     };
+    this.changeDate = this.changeDate.bind(this);
   }
 
   componentDidMount() {
@@ -21,13 +22,29 @@ class Concerts extends React.Component {
       });
   }
 
+  changeDate = (startDate, endDate) => {
+    var url = new URL("http://localhost:3001/concerts"),
+      params = { startDate: startDate, endDate: endDate };
+    Object.keys(params).forEach(key =>
+      url.searchParams.append(key, params[key])
+    );
+    fetch(url)
+      .then(response => response.json())
+      .then(data => {
+        let events = JSON.parse(data.body);
+        this.setState({
+          concerts: events.events
+        });
+      });
+  };
+
   render() {
     return (
       <div>
         <h1>San Francisco Concerts </h1>
         <ConcertsList concerts={this.state.concerts} />
         <div className="calendar-wrapper">
-          <Calendar />
+          <Calendar changeDate={this.changeDate.bind(this)} />
         </div>
       </div>
     );
